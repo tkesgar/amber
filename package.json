@@ -1,6 +1,6 @@
 {
   "name": "@tkesgar/amber",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Utility for creating manually resolved/rejected promises",
   "keywords": [
     "utility",
