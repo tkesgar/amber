@@ -64,7 +64,7 @@ const waitForFileExists = createWait();
 setInterval(() => {
   (async () => {
     if (await fileExists("foo.txt")) {
-      wait.resolve();
+      waitForFileExists.resolve();
     }
   })().catch((error) => {
     console.error(error.message);
