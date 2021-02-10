@@ -37,8 +37,7 @@
     "test": "jest",
     "clean": "rm -rf dist/**",
     "build": "tsc",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "postinstall": "husky install"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
