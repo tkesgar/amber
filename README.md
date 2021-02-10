@@ -139,6 +139,80 @@ function confirmTerms() {
 </form>;
 ```
 
+### Alternative interface with Node-style callbacks
+
+With creating a new `Promise`:
+
+```js
+router.post("/", [
+  validateBody(
+    Joi.object({
+      name: Joi.string(),
+      password: Joi.string(),
+    })
+  ),
+  send(async ({ req }) => {
+    const { name, password } = req.body;
+
+    const user = await authenticateUserByPassword(name, password);
+    if (!user) {
+      throw new AuthRequiredError("Invalid user name or password");
+    }
+
+    const waitForLogin = createWait();
+
+    await new Promise((resolve, reject) => {
+      req.login(user, (err) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve();
+      });
+    });
+
+    return createAuthResponse(user);
+  }),
+]);
+```
+
+With `createWait`:
+
+```js
+router.post("/", [
+  validateBody(
+    Joi.object({
+      name: Joi.string(),
+      password: Joi.string(),
+    })
+  ),
+  send(async ({ req }) => {
+    const { name, password } = req.body;
+
+    const user = await authenticateUserByPassword(name, password);
+    if (!user) {
+      throw new AuthRequiredError("Invalid user name or password");
+    }
+
+    const waitForLogin = createWait();
+
+    req.login(user, (err) => {
+      if (err) {
+        waitForLogin.reject(err);
+        return;
+      }
+
+      waitForLogin.resolve();
+    });
+
+    await waitForLogin;
+
+    return createAuthResponse(user);
+  }),
+]);
+```
+
 ## Contribute
 
 Feel free to [send issues][issues] or [create pull requests][pulls].
