@@ -1,4 +1,4 @@
-export type Wait<T> = Promise<T> & {
+export type Wait<T = void> = Promise<T> & {
   resolve(value: T): void;
   reject(reason: unknown): void;
 };
