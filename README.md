@@ -159,8 +159,6 @@ router.post("/", [
       throw new AuthRequiredError("Invalid user name or password");
     }
 
-    const waitForLogin = createWait();
-
     await new Promise((resolve, reject) => {
       req.login(user, (err) => {
         if (err) {
