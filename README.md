@@ -3,8 +3,6 @@
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
-[![Amber](https://uploadstatic-sea.mihoyo.com/contentweb/20191009/2019100914372396510.png)](https://genshin.mihoyo.com/en/character/mondstadt?char=1)
-
 > Outrider Amber reporting for duty! Just say the word if you ever need my help!
 
 amber is a utility helper for creating _manually resolved or rejected promises_.
